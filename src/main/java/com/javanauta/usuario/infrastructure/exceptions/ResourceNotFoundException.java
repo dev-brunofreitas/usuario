@@ -1,4 +1,4 @@
-package com.javanauta.aprendendospring.infrastructure.exceptions;
+package com.javanauta.usuario.infrastructure.exceptions;
 
 public class ResourceNotFoundException extends RuntimeException {
 

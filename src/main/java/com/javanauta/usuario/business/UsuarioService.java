@@ -1,6 +1,6 @@
 package com.javanauta.usuario.business;
 
-import com.javanauta.aprendendospring.infrastructure.exceptions.ResourceNotFoundException;
+import com.javanauta.usuario.infrastructure.exceptions.ConflictException;
 import com.javanauta.usuario.business.converter.UsuarioConverter;
 import com.javanauta.usuario.business.dto.EnderecoDTO;
 import com.javanauta.usuario.business.dto.TelefoneDTO;
@@ -8,6 +8,7 @@ import com.javanauta.usuario.business.dto.UsuarioDTO;
 import com.javanauta.usuario.infrastructure.entity.Endereco;
 import com.javanauta.usuario.infrastructure.entity.Telefone;
 import com.javanauta.usuario.infrastructure.entity.Usuario;
+import com.javanauta.usuario.infrastructure.exceptions.ResourceNotFoundException;
 import com.javanauta.usuario.infrastructure.repository.EnderecoRepository;
 import com.javanauta.usuario.infrastructure.repository.TelefoneRepository;
 import com.javanauta.usuario.infrastructure.repository.UsuarioRepository;
@@ -39,10 +40,10 @@ public class UsuarioService {
         try {
             boolean existe = verificaEmailExistente(email);
             if (existe) {
-                throw new com.javanauta.aprendendospring.infrastructure.exceptions.ConflictException("Email já cadastrado" + email);
+                throw new ConflictException("Email já cadastrado" + email);
             }
-        }catch (com.javanauta.aprendendospring.infrastructure.exceptions.ConflictException e){
-            throw new com.javanauta.aprendendospring.infrastructure.exceptions.ConflictException("Email já cadastrado" + e.getCause());
+        }catch (ConflictException e){
+            throw new ConflictException("Email já cadastrado" + e.getCause());
         }
     }
 
